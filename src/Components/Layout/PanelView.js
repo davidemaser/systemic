@@ -28,9 +28,7 @@ class PanelView extends Component{
 
   render(){
     return(
-      <div>
-        {this.buildView()}
-      </div>
+        this.buildView()
     )
   }
 }

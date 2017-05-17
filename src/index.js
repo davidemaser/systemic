@@ -6,7 +6,7 @@ import './Stylesheets/css/Index.css';
 
 ReactDOM.render(
     <MuiThemeProvider>
-  <App />
+  <App dataUrl="https://davidemaser.github.io/data/temp-systemic.json" />
     </MuiThemeProvider>,
   document.getElementById('root')
 );

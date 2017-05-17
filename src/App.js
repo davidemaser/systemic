@@ -35,9 +35,10 @@ class App extends Component {
                 return <div>Woh hey hey hey wait a second...</div>;
               } else {
                 return(
-                <PanelView default={true} nodes={nodes} model="mail" data={result.body}>
-                  <div>&nbsp;</div>
-                </PanelView>
+                  <div>
+                <PanelView default={true} nodes={nodes} model="mail" data={result.body}/>
+                <PanelView default={true} nodes={nodes} model="user" data={result.body}/>
+                  </div>
                 )
               }
             }

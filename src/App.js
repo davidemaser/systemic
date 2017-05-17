@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Gutter from "./Components/Layout/Gutter";
 import PanelView from "./Components/Layout/PanelView";
 import Request from 'react-http-request';
+import LeftNav from "./Components/Layout/LeftNav";
 const nodes={
   root:'service',
   user:'user',
@@ -20,8 +20,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Gutter default={false}/>
-        <Request
+        <section id="nav"><LeftNav/></section>
+        <section id="main"><Request
           url='https://davidemaser.github.io/data/temp-systemic.json'
           method='get'
           accept='application/json'
@@ -44,6 +44,7 @@ class App extends Component {
             }
           }
         </Request>
+        </section>
       </div>
     );
   }

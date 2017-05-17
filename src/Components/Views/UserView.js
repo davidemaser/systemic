@@ -2,7 +2,27 @@
  * Created by David Maser on 17/05/2017.
  */
 import React,{Component} from 'react';
-
+const typeMap = {
+  address:{
+    home:{
+      schema:['street','city','state','zip','country']
+    },
+    work:{
+      schema:['street','city','state','zip','country']
+    }
+  },
+  phone:{
+    home:{
+      schema:['number']
+    },
+    work:{
+      schema:['number']
+    },
+    cell:{
+      schema:['number']
+    }
+  }
+};
 class UserView extends Component{
   constructor(props){
     super(props);
@@ -12,19 +32,10 @@ class UserView extends Component{
   }
 
   formatObject(data,type){
-    console.log(type);
-    const typeMap = {
-      address:{
-        parent:['home','work'],
-        schema:['street','city','state','zip','country']
-      },
-      phone:{
-        parent:['home','work','cell'],
-        schema:['number']
-      }
-    };
+    let processType = typeMap[type];
     let objArray = [];
     let n;
+    console.log(processType);
     for(n in data){
       objArray.push(<div>{n} {data[n]}</div>)
     }

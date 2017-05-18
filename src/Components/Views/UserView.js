@@ -35,7 +35,6 @@ class UserView extends Component{
     let processType = typeMap[type];
     let objArray = [];
     let n;
-    console.log(processType);
     for(n in data){
       objArray.push(<div>{n} {data[n]}</div>)
     }

@@ -11,13 +11,14 @@ class PanelView extends Component{
     super(props);
     this.state={
       model:this.props.model || null,
-      data:this.props.data || null
+      data:this.props.data || null,
+      type:this.props.type
     };
   }
 
   buildView(){
     const modelObj = {
-      mail:<div className="view app-mail"><MailView nodes={this.props.nodes} data={this.state.data}/></div> ,
+      mail:<div className="view app-mail"><MailView type={this.state.type} nodes={this.props.nodes} data={this.state.data}/></div> ,
       user:<div className="view app-user"><UserView nodes={this.props.nodes} data={this.state.data}/></div> ,
       calendar:<div className="view app-mail"><CalendarView nodes={this.props.nodes} data={this.state.data}/></div>,
       tasks:<div className="view app-tasks">tasks here</div>

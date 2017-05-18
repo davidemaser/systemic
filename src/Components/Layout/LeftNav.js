@@ -11,13 +11,17 @@ import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentAlerts from 'material-ui/svg-icons/alert/add-alert';
 import Divider from 'material-ui/Divider';
 import ActionInfo from 'material-ui/svg-icons/action/info';
+import ReactDOM from 'react-dom';
 
 class LeftNav extends Component {
+  handleClicked() {
+    console.log("firstList Clicked",ReactDOM.findDOMNode(this.refs));
+  }
   render() {
     return (
       <div>
         <List>
-          <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} />
+          <ListItem primaryText="Inbox" onClick={this.handleClicked} leftIcon={<ContentDrafts />} />
           <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
           <ListItem primaryText="User Settings" leftIcon={<UserIcon />} />
           <ListItem primaryText="Drafts" leftIcon={<ContentTasks />} />

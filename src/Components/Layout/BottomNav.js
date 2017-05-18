@@ -4,7 +4,8 @@
 import React, {Component} from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
-import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
+import MapsPersonPin from 'material-ui/svg-icons/maps/add-location';
+import AppNav from 'material-ui/svg-icons/navigation/apps';
 
 class BottomNav extends Component {
 
@@ -12,8 +13,8 @@ class BottomNav extends Component {
     return (
       <Tabs>
         <Tab
-          icon={<FontIcon className="material-icons">phone</FontIcon>}
-          label="RECENTS"
+          icon={<AppNav />}
+          label="APPS"
         />
         <Tab
           icon={<FontIcon className="material-icons">favorite</FontIcon>}
@@ -21,7 +22,7 @@ class BottomNav extends Component {
         />
         <Tab
           icon={<MapsPersonPin />}
-          label="NEARBY"
+          label="MAPS"
         />
       </Tabs>
     )

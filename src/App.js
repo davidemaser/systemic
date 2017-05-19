@@ -34,7 +34,8 @@ class App extends Component {
       floorVisible:'hidden',
       activeSection:'Messages',
       model:'mailMessage',
-      showMenu:true
+      showMenu:true,
+      actionMenu:'on-screen'
     };
   }
 
@@ -45,22 +46,22 @@ class App extends Component {
   handleClicked(args) {
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden'});
+        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'on-screen'});
         break;
       case 'mail-sent':
-        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden'});
+        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'off-screen'});
         break;
       case 'user-settings':
-        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden'});
+        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden',actionMenu:'off-screen'});
         break;
       case 'app-settings':
         this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible'});
         break;
       case 'tasks':
-        this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible'});
+        this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible',actionMenu:'on-screen'});
         break;
       default:
-        this.setState({mail:'received',model:'mail',activeSection:'Messages'});
+        this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen'});
         break;
     }
     console.log(args,this.state)
@@ -73,7 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <section id="action"><ActionButton/></section>
+        <section id="action" className={this.state.actionMenu}><ActionButton/></section>
         <section id="nav">
           <List>
             <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
@@ -115,7 +116,7 @@ class App extends Component {
           }
         </Request>
         </section>
-        <section id="floor" className={this.state.floorVisible}><BottomNav/></section>
+        <section id="floor" className={this.state.floorVisible}><BottomNav item="default"/></section>
       </div>
     );
   }

@@ -11,25 +11,28 @@ class BottomNav extends Component {
   constructor(props){
     super(props);
     this.state={
-      options:[
-        {
-          icon:<AppNav />,
-          label:'APPS'
-        },
-        {
-          icon:<FontIcon className="material-icons">favorite</FontIcon>,
-          label:'FAVORITES'
-        },
-        {
-          icon:<MapsPersonPin />,
-          label:'MAPS'
-        }
-      ]
+      item:this.props.item,
+      options:{
+        default:[
+          {
+            icon:<AppNav />,
+            label:'APPS'
+          },
+          {
+            icon:<FontIcon className="material-icons">favorite</FontIcon>,
+            label:'FAVORITES'
+          },
+          {
+            icon:<MapsPersonPin />,
+            label:'MAPS'
+          }
+        ]
+      }
     }
   }
 
   buildIconRow(){
-    let options = this.state.options;
+    let options = this.state.options[this.state.item];
     let optionsArray = [];
     let o;
     for(o in options){

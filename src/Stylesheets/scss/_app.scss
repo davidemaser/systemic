@@ -61,9 +61,15 @@ section#main {
 
 section#action {
   position: absolute;
-  right: 0;
   bottom: 20px;
   z-index: 100;
+  transition:all 0.3s;
+  &.on-screen{
+    right:0;
+  }
+  &.off-screen{
+    right:-100px;
+  }
 }
 section#floor {
   position: fixed;

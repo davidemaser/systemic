@@ -38,6 +38,10 @@ class App extends Component {
     };
   }
 
+  updateDataInState(d){
+    this.setState({dataList:d});
+  }
+
   handleClicked(args) {
     switch(args){
       case 'mail-received':

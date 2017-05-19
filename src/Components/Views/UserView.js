@@ -2,6 +2,8 @@
  * Created by David Maser on 17/05/2017.
  */
 import React,{Component} from 'react';
+import TextField from 'material-ui/TextField';
+
 const typeMap = {
   address:{
     home:{
@@ -44,7 +46,6 @@ class UserView extends Component{
       </div>
     )*/
   }
-
   renderUserView() {
     let rootNode = this.props.nodes['root'];
     let userNode = this.props.nodes['user'];
@@ -53,7 +54,10 @@ class UserView extends Component{
     let u;
     for(u in userData) {
       userArray.push(<div key={u} className="user-block">
-        {typeof userData[u] === 'object' ? this.formatObject(userData[u],u) : <div className="user-item">{userData[u]}</div>}
+        {typeof userData[u] === 'object' ? this.formatObject(userData[u],u) : <div className="user-item">
+          <TextField id={`text-field-${u}`} type={u === 'password' ? 'password' : null} floatingLabelText={u}
+                       defaultValue={userData[u]}/>
+        </div>}
       </div>)
     }
     return userArray;

@@ -8,22 +8,45 @@ import MapsPersonPin from 'material-ui/svg-icons/maps/add-location';
 import AppNav from 'material-ui/svg-icons/navigation/apps';
 
 class BottomNav extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      options:[
+        {
+          icon:<AppNav />,
+          label:'APPS'
+        },
+        {
+          icon:<FontIcon className="material-icons">favorite</FontIcon>,
+          label:'FAVORITES'
+        },
+        {
+          icon:<MapsPersonPin />,
+          label:'MAPS'
+        }
+      ]
+    }
+  }
+
+  buildIconRow(){
+    let options = this.state.options;
+    let optionsArray = [];
+    let o;
+    for(o in options){
+      optionsArray.push(
+        <Tab
+          icon={options[o].icon}
+          label={options[o].label}
+        />
+      )
+    }
+    return optionsArray;
+  }
 
   render() {
     return (
       <Tabs>
-        <Tab
-          icon={<AppNav />}
-          label="APPS"
-        />
-        <Tab
-          icon={<FontIcon className="material-icons">favorite</FontIcon>}
-          label="FAVORITES"
-        />
-        <Tab
-          icon={<MapsPersonPin />}
-          label="MAPS"
-        />
+        {this.buildIconRow()}
       </Tabs>
     )
   }

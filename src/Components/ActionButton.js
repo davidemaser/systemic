@@ -11,11 +11,46 @@ import MenuItem from 'material-ui/MenuItem';
 const style = {
   marginRight: 20,
 };
+const menuItems = {
+  mail:[
+    {
+      label:'New Message',
+      handler:''
+    },
+    {
+      label:'Refresh',
+      handler:''
+    },
+    {
+      label:'Mark as read',
+      handler:''
+    },
+    {
+      label:'Delete',
+      handler:''
+    }
+  ],
+  tasks:[
+    {
+      label:'New Task'
+    },
+    {
+      label:'Delete Task'
+    },
+    {
+      label:'Mark as complete'
+    },
+    {
+      label:'Re-assign Task'
+    }
+  ]
+};
 class ActionButton extends Component{
   constructor(props){
     super(props);
     this.state={
-      open:false
+      open:false,
+      subMenu:this.props.subMenu
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -36,6 +71,16 @@ class ActionButton extends Component{
     });
   };
 
+  setMenuItems(){
+    let items = menuItems[this.state.subMenu];
+    let itemsArray = [];
+    let i;
+    for(i in items){
+      itemsArray.push(<MenuItem primaryText={items[i].label} />)
+    }
+    return itemsArray;
+  }
+
   render(){
     return(
       <div>
@@ -51,10 +96,7 @@ class ActionButton extends Component{
           animation={PopoverAnimationVertical}
         >
           <Menu>
-            <MenuItem primaryText="Refresh" />
-            <MenuItem primaryText="Help &amp; feedback" />
-            <MenuItem primaryText="Settings" />
-            <MenuItem primaryText="Sign out" />
+            {this.setMenuItems()}
           </Menu>
         </Popover>
       </div>

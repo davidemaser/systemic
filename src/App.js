@@ -33,9 +33,10 @@ class App extends Component {
       mail:'received',
       floorVisible:'hidden',
       activeSection:'Messages',
-      model:'mailMessage',
+      model:'mailOverview',
       showMenu:true,
-      actionMenu:'on-screen'
+      actionMenu:'on-screen',
+      actionSubMenu:'mail'
     };
   }
 
@@ -46,7 +47,7 @@ class App extends Component {
   handleClicked(args) {
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'on-screen'});
+        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'on-screen',actionSubMenu:'mail'});
         break;
       case 'mail-sent':
         this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'off-screen'});
@@ -58,13 +59,12 @@ class App extends Component {
         this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible'});
         break;
       case 'tasks':
-        this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible',actionMenu:'on-screen'});
+        this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible',actionMenu:'on-screen',actionSubMenu:'tasks'});
         break;
       default:
         this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen'});
         break;
     }
-    console.log(args,this.state)
   }
 
   showFloorMenu(){
@@ -74,7 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <section id="action" className={this.state.actionMenu}><ActionButton/></section>
+        <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu}/></section>
         <section id="nav">
           <List>
             <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />

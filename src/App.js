@@ -51,10 +51,10 @@ class App extends Component {
         this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden'});
         break;
       case 'user-settings':
-        this.setState({model:'user',activeSection:'User Settings',showMenu:false});
+        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden'});
         break;
       case 'app-settings':
-        this.setState({activeSection:'App Settings'});
+        this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible'});
         break;
       case 'tasks':
         this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible'});

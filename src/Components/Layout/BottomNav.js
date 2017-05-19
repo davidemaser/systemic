@@ -34,10 +34,7 @@ class BottomNav extends Component {
     let o;
     for(o in options){
       optionsArray.push(
-        <Tab
-          icon={options[o].icon}
-          label={options[o].label}
-        />
+        <Tab key={o} icon={options[o].icon} label={options[o].label}/>
       )
     }
     return optionsArray;

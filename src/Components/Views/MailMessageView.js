@@ -50,8 +50,8 @@ class MailMessageView extends Component{
     let m;
     for(m in mailData){
       mailArray.push(
-        <List>
-        <div key={m} className="mail-block">
+        <List key={m}>
+        <div className="mail-block">
           <ListItem primaryText={this.state.type} onClick={this.changeTypeView} leftIcon={<ContentInbox />} />
           <ListItem primaryText={mailData[m].from} leftIcon={<FromUser />} />
           {this.state.ccVisible === true ? <ListItem onClick={this.changeCCView} primaryText={this.renderCcFields(mailData[m].cc)} leftIcon={<FromUserName />} /> : null}

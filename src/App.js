@@ -31,21 +31,22 @@ class App extends Component {
       viewPort: false,
       dataList:null,
       mail:'received',
-      floorDefault:'hidden',
-      activeSection:'Messages'
+      floorDefault:'visible',
+      activeSection:'Messages',
+      model:'mailMessage'
     };
   }
 
   handleClicked(args) {
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',activeSection:'Messages'});
+        this.setState({mail:'received',model:'mail',activeSection:'Messages'});
         break;
       case 'mail-sent':
-        this.setState({mail:'sent',activeSection:'Messages'});
+        this.setState({mail:'sent',model:'mail',activeSection:'Messages'});
         break;
       case 'user-settings':
-        this.setState({activeSection:'User Settings'});
+        this.setState({model:'user',activeSection:'User Settings'});
         break;
       case 'app-settings':
         this.setState({activeSection:'App Settings'});
@@ -53,9 +54,11 @@ class App extends Component {
       case 'tasks':
         this.setState({activeSection:'Tasks'});
         break;
-      default: null;
+      default:
+        this.setState({mail:'received',model:'mail',activeSection:'Messages'});
+        break;
     }
-    console.log(args,this.state.mail)
+    console.log(args,this.state)
   }
 
   showFloorMenu(){
@@ -86,7 +89,7 @@ class App extends Component {
           </List>
         </section>
         <section id="main">
-          <Request url={this.state.src} method='get' accept='application/json' verbose={true}>
+          <Request url={this.state.src} method='get' accept='application/json' verbose={false}>
           {
             ({error, result, loading}) => {
               if (loading) {
@@ -98,8 +101,7 @@ class App extends Component {
                   <div>
                   <HeadBar section={this.state.activeSection}/>
                   <div className="app-core-view">
-                    <PanelView default={true} type={this.state.mail} nodes={nodes} model="mail" data={result.body}/>
-                    <PanelView default={true} nodes={nodes} model="user" data={result.body}/>
+                    <PanelView default={true} type={this.state.mail} nodes={nodes} model={this.state.model} data={result.body}/>
                   </div>
                   </div>
                 )

@@ -3,3 +3,9 @@
   border-bottom: 1px solid;
   margin-right: 12px;
 }
+tr.unread {
+  font-weight: bold;
+}
+tr.read {
+  font-weight: normal;
+}

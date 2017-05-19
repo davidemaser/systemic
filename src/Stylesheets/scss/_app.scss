@@ -58,7 +58,15 @@ section#main {
   right: 0;
   top: 0;
 }
-
+.user-view {
+  padding: 0 2%;
+}
+.view.app-tasks tr.Medium {
+  background: bisque;
+}
+.view.app-tasks tr.High {
+  background: coral;
+}
 section#action {
   position: absolute;
   bottom: 20px;

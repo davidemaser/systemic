@@ -20,7 +20,8 @@ class MailView extends Component{
       selectable: true,
       multiSelectable: true,
       enableSelectAll: true,
-      showCheckboxes: true
+      showCheckboxes: true,
+      deselectOnClickaway: false
     };
   }
   renderHeaderColumns(){
@@ -58,7 +59,7 @@ class MailView extends Component{
             {this.renderHeaderColumns()}
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody deselectOnClickaway={this.state.deselectOnClickaway}>
           {this.renderTableRows()}
         </TableBody>
       </Table>

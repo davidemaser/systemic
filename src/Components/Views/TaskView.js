@@ -10,7 +10,6 @@ import {
 import HighPriority from 'material-ui/svg-icons/alert/error';
 import MediumPriority from 'material-ui/svg-icons/alert/warning';
 import TaskToolBar from "./TaskToolBar";
-import TaskAddItem from "./TaskAddItem";
 
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
@@ -24,7 +23,8 @@ class TaskView extends Component{
       selectable: true,
       multiSelectable: true,
       enableSelectAll: true,
-      showCheckboxes: true
+      showCheckboxes: true,
+      deselectOnClickaway: false
     };
   }
   renderHeaderColumns(){
@@ -65,7 +65,7 @@ class TaskView extends Component{
             {this.renderHeaderColumns()}
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody deselectOnClickaway={this.state.deselectOnClickaway}>
           {this.renderTableRows()}
         </TableBody>
       </Table>

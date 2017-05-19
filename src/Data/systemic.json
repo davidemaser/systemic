@@ -51,8 +51,28 @@
           "from":"timmyb@domain.com",
           "date":"17/05/1972",
           "priority":"",
-          "cc":["name"],
+          "cc":["vor@vor.com","tom.bell@bell.ca","wilma@yahoo.ca"],
           "subject":"this is the mail subject",
+          "content":"",
+          "read":false
+        },
+        {
+          "id":"127995Rf",
+          "from":"robert@aol.com",
+          "date":"19/05/1972",
+          "priority":"",
+          "cc":["rob.bool@link.com","jim.commer@wwooo.com"],
+          "subject":"Hi how are you",
+          "content":"",
+          "read":true
+        },
+        {
+          "id":"1s445Rf",
+          "from":"jack.young@gmail.com",
+          "date":"17/05/1972",
+          "priority":"",
+          "cc":["steven.robb@gmail.com","vor@vor.com"],
+          "subject":"RE: Your bill payment",
           "content":"",
           "read":false
         }
@@ -85,6 +105,28 @@
         "assigner":"jimmyc",
         "followers":["johnnyBOOK","roberS"],
         "priority":"Medium",
+        "linked":[
+          {
+            "taskID":189946,
+            "title":"Also do this one"
+          }
+        ],
+        "tags":["work","project"],
+        "keywords":["sprint45","assigned"],
+        "content":"This task has to be done when the thing is assigned or else it may have to be reassigned you dig"
+      },
+      {
+        "title":"This has to get done",
+        "date":{
+          "created":"10/05/2017",
+          "started":"",
+          "due":"31/05/2017",
+          "closed":false
+        },
+        "status":"",
+        "assigner":"jimmyc",
+        "followers":["johnnyBOOK","roberS"],
+        "priority":"High",
         "linked":[
           {
             "taskID":189945,

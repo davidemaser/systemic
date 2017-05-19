@@ -36,7 +36,8 @@ class App extends Component {
       model:'mailOverview',
       showMenu:true,
       actionMenu:'on-screen',
-      actionSubMenu:'mail'
+      actionSubMenu:'mail',
+      bottomNavItem:'default'
     };
   }
 
@@ -48,22 +49,22 @@ class App extends Component {
 
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'on-screen',actionSubMenu:'mail'});
+        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail'});
         break;
       case 'mail-sent':
-        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'off-screen'});
+        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen'});
         break;
       case 'user-settings':
-        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden',actionMenu:'off-screen'});
+        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen'});
         break;
       case 'app-settings':
-        this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible'});
+        this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible',bottomNavItem:'default'});
         break;
       case 'tasks':
-        this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',actionMenu:'on-screen',actionSubMenu:'tasks'});
+        this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
         break;
       default:
-        this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen'});
+        this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen',bottomNavItem:'default'});
         break;
     }
   }
@@ -81,7 +82,7 @@ class App extends Component {
             <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
             <ListItem primaryText="Sent mail" onClick={()=>{this.handleClicked('mail-sent')}} leftIcon={<ContentSend />} />
             <ListItem primaryText="User Settings" onClick={()=>{this.handleClicked('user-settings')}} leftIcon={<UserIcon />} />
-            <ListItem primaryText="Drafts" leftIcon={<ContentTasks />} />
+            <ListItem primaryText="Notes" leftIcon={<ContentTasks />} />
             <ListItem primaryText="Tasks" onClick={()=>{this.handleClicked('tasks')}} leftIcon={<Calendar />} />
             <ListItem primaryText="Alerts" leftIcon={<ContentAlerts />} />
           </List>
@@ -117,7 +118,7 @@ class App extends Component {
           }
         </Request>
         </section>
-        <section id="floor" className={this.state.floorVisible}><BottomNav item="default"/></section>
+        <section id="floor" className={this.state.floorVisible}><BottomNav item={this.state.bottomNavItem}/></section>
       </div>
     );
   }

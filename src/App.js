@@ -80,7 +80,7 @@ class App extends Component {
         <section id="nav">
           <List>
             <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
-            <ListItem primaryText="Sent mail" onClick={()=>{this.handleClicked('mail-sent')}} leftIcon={<ContentSend />} />
+            {/*<ListItem primaryText="Sent mail" onClick={()=>{this.handleClicked('mail-sent')}} leftIcon={<ContentSend />} />*/}
             <ListItem primaryText="User Settings" onClick={()=>{this.handleClicked('user-settings')}} leftIcon={<UserIcon />} />
             <ListItem primaryText="Notes" leftIcon={<ContentTasks />} />
             <ListItem primaryText="Tasks" onClick={()=>{this.handleClicked('tasks')}} leftIcon={<Calendar />} />

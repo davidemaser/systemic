@@ -3,10 +3,11 @@
   border-bottom: 1px solid;
   margin-right: 12px;
 }
-tr.unread {
+.view.app-mail tr.unread {
   font-weight: bold;
+  background: azure;
 }
-tr.read {
+.view.app-mail tr.read {
   font-weight: normal;
 }
 .mail-item.content{

@@ -31,28 +31,29 @@ class App extends Component {
       viewPort: false,
       dataList:null,
       mail:'received',
-      floorDefault:'visible',
+      floorVisible:'hidden',
       activeSection:'Messages',
-      model:'mailMessage'
+      model:'mailMessage',
+      showMenu:true
     };
   }
 
   handleClicked(args) {
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',model:'mail',activeSection:'Messages'});
+        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden'});
         break;
       case 'mail-sent':
-        this.setState({mail:'sent',model:'mail',activeSection:'Messages'});
+        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden'});
         break;
       case 'user-settings':
-        this.setState({model:'user',activeSection:'User Settings'});
+        this.setState({model:'user',activeSection:'User Settings',showMenu:false});
         break;
       case 'app-settings':
         this.setState({activeSection:'App Settings'});
         break;
       case 'tasks':
-        this.setState({activeSection:'Tasks'});
+        this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible'});
         break;
       default:
         this.setState({mail:'received',model:'mail',activeSection:'Messages'});
@@ -62,7 +63,7 @@ class App extends Component {
   }
 
   showFloorMenu(){
-    this.state.floorDefault === 'hidden' ? this.setState({floorDefault:'visible'}) : this.setState({floorDefault:'hidden'});
+    this.state.floorVisible === 'hidden' ? this.setState({floorVisible:'visible'}) : this.setState({floorVisible:'hidden'});
   }
 
   render() {
@@ -85,11 +86,11 @@ class App extends Component {
             <ListItem primaryText="Settings" onClick={()=>{this.handleClicked('app-settings')}} rightIcon={<ContentSettings />} />
 
             <Divider />
-            <ListItem primaryText={this.state.floorDefault === 'hidden' ? 'Show Footer Menu' : 'Hide Footer Menu'} onClick={()=>{this.showFloorMenu()}} />
+            <ListItem primaryText={this.state.floorVisible === 'hidden' ? 'Show Footer Menu' : 'Hide Footer Menu'} onClick={()=>{this.showFloorMenu()}} />
           </List>
         </section>
         <section id="main">
-          <Request url={this.state.src} method='get' accept='application/json' verbose={false}>
+          <Request url={this.state.src} method='get' accept='application/json' verbose={false} model={this.state.model}>
           {
             ({error, result, loading}) => {
               if (loading) {
@@ -99,7 +100,7 @@ class App extends Component {
               } else {
                 return(
                   <div>
-                  <HeadBar section={this.state.activeSection}/>
+                  <HeadBar section={this.state.activeSection} showMenu={this.state.showMenu}/>
                   <div className="app-core-view">
                     <PanelView default={true} type={this.state.mail} nodes={nodes} model={this.state.model} data={result.body}/>
                   </div>
@@ -110,7 +111,7 @@ class App extends Component {
           }
         </Request>
         </section>
-        <section id="floor" className={this.state.floorDefault}><BottomNav/></section>
+        <section id="floor" className={this.state.floorVisible}><BottomNav/></section>
       </div>
     );
   }

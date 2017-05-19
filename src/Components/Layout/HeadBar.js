@@ -7,7 +7,7 @@ import SettingsButton from "../SettingsButton";
 class HeadBar extends Component{
   render(){
     return(
-      <div className="app-core-head">{this.props.section}<SettingsButton/></div>
+      <div className="app-core-head">{this.props.section}{this.props.showMenu === true ? <SettingsButton/>:null}</div>
     )
   }
 }

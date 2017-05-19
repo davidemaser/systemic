@@ -7,6 +7,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
 
 const style = {
   marginRight: 20,
@@ -16,6 +17,9 @@ const menuItems = {
     {
       label:'New Message',
       handler:''
+    },
+    {
+      label:'divider'
     },
     {
       label:'Refresh',
@@ -36,6 +40,9 @@ const menuItems = {
     },
     {
       label:'Delete Task'
+    },
+    {
+      label:'divider'
     },
     {
       label:'Mark as complete'
@@ -72,11 +79,11 @@ class ActionButton extends Component{
   };
 
   setMenuItems(){
-    let items = menuItems[this.state.subMenu];
+    let items = menuItems[this.props.subMenu];
     let itemsArray = [];
     let i;
     for(i in items){
-      itemsArray.push(<MenuItem primaryText={items[i].label} />)
+      items[i].label === 'divider' ? itemsArray.push(<Divider />) : itemsArray.push(<MenuItem key={i} primaryText={items[i].label} />)
     }
     return itemsArray;
   }

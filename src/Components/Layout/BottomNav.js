@@ -29,6 +29,7 @@ class BottomNav extends Component {
         ]
       }
     }
+    this.buildIconRow = this.buildIconRow.bind(this);
   }
 
   buildIconRow(){

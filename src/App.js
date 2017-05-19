@@ -45,6 +45,7 @@ class App extends Component {
   }
 
   handleClicked(args) {
+
     switch(args){
       case 'mail-received':
         this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',actionMenu:'on-screen',actionSubMenu:'mail'});
@@ -59,7 +60,7 @@ class App extends Component {
         this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible'});
         break;
       case 'tasks':
-        this.setState({activeSection:'Tasks',showMenu:false,floorVisible:'visible',actionMenu:'on-screen',actionSubMenu:'tasks'});
+        this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',actionMenu:'on-screen',actionSubMenu:'tasks'});
         break;
       default:
         this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen'});

@@ -7,12 +7,16 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import HighPriority from 'material-ui/svg-icons/alert/error';
+import MediumPriority from 'material-ui/svg-icons/alert/warning';
+import TaskToolBar from "./TaskToolBar";
+import TaskAddItem from "./TaskAddItem";
 
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
  */
 
-class MailView extends Component{
+class TaskView extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -24,7 +28,7 @@ class MailView extends Component{
     };
   }
   renderHeaderColumns(){
-    const columns=['DATE','FROM','SUBJECT'];
+    const columns=['DATE','ASSIGNED BY','TITLE','PRIORITY'];
     let c;
     let columnArray = [];
     for(c in columns){
@@ -33,15 +37,16 @@ class MailView extends Component{
     return columnArray;
   }
   renderTableRows(){
-    let list = this.props.data[this.props.nodes['root']][this.props.nodes['mail']][this.state.default];
+    let list = this.props.data[this.props.nodes['root']][this.props.nodes['tasks']];
     let listArray = [];
     let l;
     for(l in list){
       listArray.push(
-        <TableRow key={l} data={list[l]} className={list[l]['read'] === false ? 'unread' : 'read'}>
-          <TableRowColumn>{list[l]['date']}</TableRowColumn>
-          <TableRowColumn>{list[l]['from']}</TableRowColumn>
-          <TableRowColumn>{list[l]['subject'] !== undefined && list[l]['subject'] !== '' ? list[l]['subject'] : 'No Subject'}</TableRowColumn>
+        <TableRow key={l} data={list[l]} className={list[l]['priority']}>
+          <TableRowColumn>{list[l]['date'].created}</TableRowColumn>
+          <TableRowColumn>{list[l]['assigner']}</TableRowColumn>
+          <TableRowColumn>{list[l]['title']}</TableRowColumn>
+          <TableRowColumn>{list[l]['priority'] === 'High' ? <HighPriority/> : list[l]['priority'] === 'Medium' ? <MediumPriority/> : null}</TableRowColumn>
         </TableRow>
       )
     }
@@ -49,6 +54,8 @@ class MailView extends Component{
   }
   render(){
     return(
+      <div>
+      <TaskToolBar/>
       <Table selectable={this.state.selectable}
              multiSelectable={this.state.multiSelectable}>
         <TableHeader displaySelectAll={this.state.showCheckboxes}
@@ -62,9 +69,10 @@ class MailView extends Component{
           {this.renderTableRows()}
         </TableBody>
       </Table>
+      </div>
     )
   }
 }
 
 
-export default MailView;
+export default TaskView;

@@ -28,13 +28,22 @@ class TaskView extends Component{
     };
   }
   renderHeaderColumns(){
-    const columns=['DATE','ASSIGNED BY','TITLE','PRIORITY'];
+    const columns=['DATE','ASSIGNED BY','PROJECT','TITLE','PRIORITY'];
     let c;
     let columnArray = [];
     for(c in columns){
       columnArray.push(<TableHeaderColumn key={c}>{columns[c]}</TableHeaderColumn>)
     }
     return columnArray;
+  }
+
+  renderLinkedTasks(args){
+    let linkedArray = [];
+    let l;
+    for(l in args){
+      linkedArray.push(<div key={l} data-task-lin={args[l].taskID}>{args[l].title}</div>)
+    }
+    return linkedArray;
   }
   renderTableRows(){
     let list = this.props.data[this.props.nodes['root']][this.props.nodes['tasks']];
@@ -45,6 +54,7 @@ class TaskView extends Component{
         <TableRow key={l} data={list[l]} className={list[l]['priority']}>
           <TableRowColumn>{list[l]['date'].created}</TableRowColumn>
           <TableRowColumn>{list[l]['assigner']}</TableRowColumn>
+          <TableRowColumn>{this.renderLinkedTasks(list[l]['linked'])}</TableRowColumn>
           <TableRowColumn>{list[l]['title']}</TableRowColumn>
           <TableRowColumn>{list[l]['priority'] === 'High' ? <HighPriority/> : list[l]['priority'] === 'Medium' ? <MediumPriority/> : null}</TableRowColumn>
         </TableRow>

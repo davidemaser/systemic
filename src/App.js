@@ -8,7 +8,6 @@ import ContentBookmarks from 'material-ui/svg-icons/action/bookmark';
 import ContentSettings from 'material-ui/svg-icons/action/settings';
 import Calendar from 'material-ui/svg-icons/action/today';
 import UserIcon from 'material-ui/svg-icons/social/person';
-import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentAlerts from 'material-ui/svg-icons/alert/add-alert';
 import Divider from 'material-ui/Divider';
@@ -39,6 +38,12 @@ class App extends Component {
       actionSubMenu:'mail',
       bottomNavItem:'default'
     };
+
+    this.addTaskToggle = this.addTaskToggle.bind(this);
+  }
+
+  addTaskToggle(args){
+    console.log('we passed'+args)
   }
 
   updateDataInState(d){
@@ -46,7 +51,6 @@ class App extends Component {
   }
 
   handleClicked(args) {
-
     switch(args){
       case 'mail-received':
         this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail'});
@@ -80,7 +84,6 @@ class App extends Component {
         <section id="nav">
           <List>
             <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
-            {/*<ListItem primaryText="Sent mail" onClick={()=>{this.handleClicked('mail-sent')}} leftIcon={<ContentSend />} />*/}
             <ListItem primaryText="User Settings" onClick={()=>{this.handleClicked('user-settings')}} leftIcon={<UserIcon />} />
             <ListItem primaryText="Notes" leftIcon={<ContentTasks />} />
             <ListItem primaryText="Tasks" onClick={()=>{this.handleClicked('tasks')}} leftIcon={<Calendar />} />

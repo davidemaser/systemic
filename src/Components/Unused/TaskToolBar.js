@@ -5,7 +5,7 @@ import React,{Component} from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import AddTask from "../AddTask";
+import AddTask from "./AddTask";
 
 class TaskToolBar extends Component {
   constructor(props) {

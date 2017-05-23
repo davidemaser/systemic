@@ -9,8 +9,6 @@ import {
 } from 'material-ui/Table';
 import HighPriority from 'material-ui/svg-icons/alert/error';
 import MediumPriority from 'material-ui/svg-icons/alert/warning';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import AddTask from "../AddTask";
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
  */
@@ -74,7 +72,6 @@ class TaskView extends Component{
   render(){
     return(
       <div>
-        {/*<AddTask show={this.state.showAddModal} data={this.props.data[this.props.nodes['root']]} onClick={this.handleChildClick}/>*/}
       <Table selectable={this.state.selectable}
              multiSelectable={this.state.multiSelectable}>
         <TableHeader displaySelectAll={this.state.showCheckboxes}

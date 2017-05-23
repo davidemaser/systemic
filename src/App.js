@@ -38,22 +38,21 @@ class App extends Component {
       actionSubMenu:'mail',
       bottomNavItem:'default'
     };
-
-    this.addTaskToggle = this.addTaskToggle.bind(this);
+    this.testTap = this.testTap.bind(this);
   }
 
-  addTaskToggle(args){
-    console.log('we passed'+args)
-  }
-
-  updateDataInState(d){
-    this.setState({dataList:d});
+  testTap(e){
+    let actionHandle = e.currentTarget.getAttribute('data-key-route');
+    actionHandle !== null && actionHandle !== undefined ? this.handleClicked(actionHandle) : null;
   }
 
   handleClicked(args) {
     switch(args){
       case 'mail-received':
         this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail'});
+        break;
+      case 'mail-compose':
+        this.setState({mail:'received',model:'mailCompose',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen'});
         break;
       case 'mail-sent':
         this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen'});
@@ -66,6 +65,9 @@ class App extends Component {
         break;
       case 'tasks':
         this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
+        break;
+      case 'new-task':
+        this.setState({model:'tasksAdd',activeSection:'Add A Task',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
         break;
       default:
         this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen',bottomNavItem:'default'});
@@ -80,7 +82,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu}/></section>
+        <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu} onClick={this.testTap}/></section>
         <section id="nav">
           <List>
             <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />

@@ -16,14 +16,14 @@ const menuItems = {
   mail:[
     {
       label:'New Message',
-      handler:''
+      attribute:'mail-compose'
     },
     {
       label:'divider'
     },
     {
       label:'Refresh',
-      handler:''
+      attribute:'mail-received'
     },
     {
       label:'Mark as read',
@@ -36,7 +36,8 @@ const menuItems = {
   ],
   tasks:[
     {
-      label:'New Task'
+      label:'New Task',
+      attribute:'new-task'
     },
     {
       label:'Delete Task'
@@ -83,7 +84,7 @@ class ActionButton extends Component{
     let itemsArray = [];
     let i;
     for(i in items){
-      items[i].label === 'divider' ? itemsArray.push(<Divider />) : itemsArray.push(<MenuItem key={i} primaryText={items[i].label} />)
+      items[i].label === 'divider' ? itemsArray.push(<Divider key={i} />) : itemsArray.push(<MenuItem data-key-route={items[i].attribute} key={i} primaryText={items[i].label} onClick={this.props.onClick} />)
     }
     return itemsArray;
   }

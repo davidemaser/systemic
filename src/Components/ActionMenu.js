@@ -11,7 +11,7 @@ class ActionMenu extends Component {
     super(props);
     this.state={
       open:false
-    }
+    };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }

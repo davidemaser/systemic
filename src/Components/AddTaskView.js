@@ -3,9 +3,8 @@
  */
 import React,{Component} from 'react';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 
-class AddTask extends Component{
+class AddTaskView extends Component{
   constructor(props){
     super(props);
     console.log(this.props.data);
@@ -41,7 +40,7 @@ class AddTask extends Component{
       switch (formItems[f].type) {
         case 'text':
           formArray.push(
-            <div key={f} className="form-view-row">
+            <div key={f} className="task-add-view-row">
               <TextField
                 hintText="Input"
                 floatingLabelText={formItems[f].label}
@@ -56,18 +55,11 @@ class AddTask extends Component{
 
   render(){
     return(
-        <div className="form-view" onClick={this.props.onClick}>
-          <RaisedButton label="Add Task" primary={true} onClick={this.props.onClick} />
-          {this.props.show === true ?
-          <div className="form-view-modal">
-            <div className="modal-filter">&nbsp;</div>
-            <div className="modal-content">
-              {this.buildForm()}
-            </div>
-          </div>:null}
+        <div className="task-add-view">
+          {this.buildForm()}
         </div>
     )
   }
 }
 
-export default AddTask;
+export default AddTaskView;

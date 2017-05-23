@@ -3,13 +3,34 @@
   border-bottom: 1px solid;
   margin-right: 12px;
 }
-.view.app-mail tr.unread {
-  font-weight: bold;
-  background: azure;
+.view{
+  &.app-mail{
+    tr{
+      &.unread {
+        font-weight: bold;
+        background: azure;
+      }
+      &.read {
+        font-weight: normal;
+      }
+    }
+  }
 }
-.view.app-mail tr.read {
-  font-weight: normal;
+.mail-item{
+  &.content{
+    padding: 0 2%;
+  }
 }
-.mail-item.content{
+.mail-compose-row{
+  div {
+    display: block!important;
+  }
+  &.message{
+    > * {
+      width: 100%!important;
+    }
+  }
+}
+.mail-compose-block {
   padding: 0 2%;
 }

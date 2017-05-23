@@ -1,0 +1,31 @@
+.task-add-view {
+  padding: 0 2%;
+}
+.form-view {
+  padding: 10px;
+  background: #ededed;
+}
+.form-view-modal {
+  position:absolute;
+  width:100%;
+  height:100%;
+  top: 0;
+  left: 0;
+}
+.modal-filter{
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+.modal-content {
+  position: relative;
+  top: 0;
+  z-index: 10;
+  padding: 0 2%;
+  background: #fff;
+  width: 70%;
+  margin: 20% auto;
+  border-radius: 2px;
+}

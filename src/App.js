@@ -14,6 +14,7 @@ import Divider from 'material-ui/Divider';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import BottomNav from "./Components/Layout/BottomNav";
 import HeadBar from "./Components/Layout/HeadBar";
+import LeftNav from "./Components/Layout/LeftNav";
 
 const nodes={
   root:'service',
@@ -38,10 +39,12 @@ class App extends Component {
       actionSubMenu:'mail',
       bottomNavItem:'default'
     };
-    this.testTap = this.testTap.bind(this);
+    this.handleActionClick = this.handleActionClick.bind(this);
+    this.handleClicked = this.handleClicked.bind(this);
+    this.showFloorMenu = this.showFloorMenu.bind(this);
   }
 
-  testTap(e){
+  handleActionClick(e){
     let actionHandle = e.currentTarget.getAttribute('data-key-route');
     actionHandle !== null && actionHandle !== undefined ? this.handleClicked(actionHandle) : null;
   }
@@ -82,25 +85,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu} onClick={this.testTap}/></section>
-        <section id="nav">
-          <List>
-            <ListItem primaryText="Inbox" onClick={()=>{this.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
-            <ListItem primaryText="User Settings" onClick={()=>{this.handleClicked('user-settings')}} leftIcon={<UserIcon />} />
-            <ListItem primaryText="Notes" leftIcon={<ContentTasks />} />
-            <ListItem primaryText="Tasks" onClick={()=>{this.handleClicked('tasks')}} leftIcon={<Calendar />} />
-            <ListItem primaryText="Alerts" leftIcon={<ContentAlerts />} />
-          </List>
-          <Divider />
-          <List>
-            <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
-            <ListItem primaryText="Bookmarks" rightIcon={<ContentBookmarks />} />
-            <ListItem primaryText="Settings" onClick={()=>{this.handleClicked('app-settings')}} rightIcon={<ContentSettings />} />
-
-            <Divider />
-            <ListItem primaryText={this.state.floorVisible === 'hidden' ? 'Show Footer Menu' : 'Hide Footer Menu'} onClick={()=>{this.showFloorMenu()}} />
-          </List>
-        </section>
+        <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu} onClick={this.handleActionClick}/></section>
+        <LeftNav showFloorMenu={this.showFloorMenu} floorVisible={this.state.floorVisible} handleClicked={this.handleClicked}/>
         <section id="main">
           <Request url={this.state.src} method='get' accept='application/json' verbose={false} model={this.state.model}>
           {
@@ -123,7 +109,9 @@ class App extends Component {
           }
         </Request>
         </section>
-        <section id="floor" className={this.state.floorVisible}><BottomNav item={this.state.bottomNavItem}/></section>
+        <section id="floor" className={this.state.floorVisible}>
+          <BottomNav item={this.state.bottomNavItem}/>
+        </section>
       </div>
     );
   }

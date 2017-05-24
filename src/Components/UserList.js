@@ -24,7 +24,7 @@ class UserList extends Component{
               return <div>Woh hey hey hey wait a second...</div>;
             } else {
               return(
-                <UserListTable data={result.body.user}/>
+                <UserListTable data={result.body.user} config={this.props.config} title={this.props.title} />
               )
             }
           }

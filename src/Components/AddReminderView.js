@@ -9,7 +9,7 @@ import TaskStatusView from "./Views/TaskStatusView";
 import TaskTagView from "./Views/TaskTagView";
 import TaskPriorityView from "./Views/TaskPriorityView";
 
-class AddTaskView extends Component{
+class AddReminderView extends Component{
   constructor(props){
     super(props);
     console.log(this.props.data);
@@ -30,26 +30,11 @@ class AddTaskView extends Component{
       },
       {
         type:'date',
-        label:'Start Date',
-        id:'start',
+        label:'Date',
+        id:'date',
         default:new Date().getDay()
-      },{
-        type:'date',
-        label:'End Date',
-        id:'end',
-        default:new Date().getDay()
-      },{
-        type:'status'
-      },{
-        type:'tags'
       },{
         type:'priority'
-      },{
-        type:'select',
-        label:'priority',
-        values:this.state.data,
-        id:'assigner',
-        class:''
       }
     ];
     let formArray = [];
@@ -58,7 +43,7 @@ class AddTaskView extends Component{
       switch (formItems[f].type) {
         case 'text':
           formArray.push(
-            <div key={f} className="task-add-view-row">
+            <div key={f} className="reminder-add-view-row">
               <TextField
                 hintText="Input"
                 floatingLabelText={formItems[f].label}
@@ -67,7 +52,7 @@ class AddTaskView extends Component{
           break;
         case 'date':
           formArray.push(
-            <div key={f} className="task-add-view-row">
+            <div key={f} className="reminder-add-view-row">
               <DatePickerView label={formItems[f].label}/>
             </div>
           );
@@ -95,14 +80,14 @@ class AddTaskView extends Component{
 
   render(){
     return(
-        <div className="task-add-view">
-          <div className="task-add-form">
+        <div className="reminder-add-view">
+          <div className="reminder-add-form">
           {this.buildForm()}
           </div>
-          <div className="task-add-users"><UserList title="Assign To" config={this.props.config}/></div>
+          <div className="reminder-add-users"><UserList title="Assign To" config={this.props.config}/></div>
         </div>
     )
   }
 }
 
-export default AddTaskView;
+export default AddReminderView;

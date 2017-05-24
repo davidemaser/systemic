@@ -19,7 +19,10 @@ class UserListTable extends Component{
     this.state={
       data:this.props.data,
       multiSelectable: true,
-      enableSelectAll: true
+      enableSelectAll: true,
+      deselectOnClickaway: false,
+      showRowHover: true,
+      stripedRows: true
     }
   }
 
@@ -27,7 +30,7 @@ class UserListTable extends Component{
     let userTableArray = [];
     let u;
     for(u in userTableHeader){
-      userTableArray.push(<TableHeaderColumn>{userTableHeader[u]}</TableHeaderColumn>)
+      userTableArray.push(<TableHeaderColumn key={u}>{userTableHeader[u]}</TableHeaderColumn>)
     }
     return userTableArray;
   }
@@ -38,7 +41,7 @@ class UserListTable extends Component{
     let a;
     for(a in userData){
       userArray.push(
-        <TableRow>
+        <TableRow key={a}>
         <TableRowColumn>{userData[a].lastName}, {userData[a].firstName}</TableRowColumn>
         <TableRowColumn>{userData[a].username}</TableRowColumn>
         </TableRow>
@@ -51,7 +54,7 @@ class UserListTable extends Component{
   render(){
     return(
       <div>
-        <div className="user-view-intro">ASSIGN TO</div>
+        <div className="user-view-intro">{this.props.title}</div>
       <Table selectable={this.state.selectable}
              multiSelectable={this.state.multiSelectable}>
         <TableHeader enableSelectAll={this.state.enableSelectAll}>
@@ -59,7 +62,9 @@ class UserListTable extends Component{
             {this.buildHeader()}
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody deselectOnClickaway={this.state.deselectOnClickaway}
+                                      showRowHover={this.state.showRowHover}
+                                      stripedRows={this.state.stripedRows}>
             {this.buildRows()}
         </TableBody>
       </Table>

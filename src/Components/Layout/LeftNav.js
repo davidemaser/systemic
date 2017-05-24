@@ -22,7 +22,7 @@ class LeftNav extends Component{
           <ListItem primaryText="User Settings" onClick={()=>{this.props.handleClicked('user-settings')}} leftIcon={<UserIcon />} />
           <ListItem primaryText="Notes" leftIcon={<ContentTasks />} />
           <ListItem primaryText="Tasks" onClick={()=>{this.props.handleClicked('tasks')}} leftIcon={<Calendar />} />
-          <ListItem primaryText="Alerts" leftIcon={<ContentAlerts />} />
+          <ListItem primaryText="Reminders" onClick={()=>{this.props.handleClicked('reminders')}} leftIcon={<ContentAlerts />} />
         </List>
         <Divider />
         <List>

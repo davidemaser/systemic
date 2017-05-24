@@ -33,6 +33,7 @@ section#nav {
   left: 0;
   top:0;
   height: 100%;
+  z-index: 10;
   border-right: 1px solid rgb(224, 224, 224);
 }
 
@@ -62,11 +63,13 @@ section#main {
 .user-view {
   padding: 0 2%;
 }
-.view.app-tasks tr.Medium {
-  background: bisque;
-}
-.view.app-tasks tr.High {
-  background: coral;
+.view.app-tasks,.view.app-reminder {
+  tr.Medium {
+    background: bisque;
+  }
+  tr.High {
+    background: coral;
+  }
 }
 section#action {
   position: absolute;

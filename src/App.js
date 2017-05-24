@@ -2,16 +2,6 @@ import React, {Component} from 'react';
 import PanelView from "./Components/Layout/PanelView";
 import Request from 'react-http-request';
 import ActionButton from "./Components/ActionButton";
-import {List, ListItem} from 'material-ui/List';
-import ContentTasks from 'material-ui/svg-icons/action/assignment';
-import ContentBookmarks from 'material-ui/svg-icons/action/bookmark';
-import ContentSettings from 'material-ui/svg-icons/action/settings';
-import Calendar from 'material-ui/svg-icons/action/today';
-import UserIcon from 'material-ui/svg-icons/social/person';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import ContentAlerts from 'material-ui/svg-icons/alert/add-alert';
-import Divider from 'material-ui/Divider';
-import ActionInfo from 'material-ui/svg-icons/action/info';
 import BottomNav from "./Components/Layout/BottomNav";
 import HeadBar from "./Components/Layout/HeadBar";
 import LeftNav from "./Components/Layout/LeftNav";
@@ -20,7 +10,8 @@ const nodes={
   root:'service',
   user:'user',
   mail:'messages',
-  tasks:'tasks'
+  tasks:'tasks',
+  reminders:'reminders'
 };
 
 class App extends Component {
@@ -37,16 +28,30 @@ class App extends Component {
       showMenu:true,
       actionMenu:'on-screen',
       actionSubMenu:'mail',
-      bottomNavItem:'default'
+      bottomNavItem:'default',
+      snackBarMessage:'Default message',
+      snackBarOpen:false,
+      modalOpen:false,
+      modalContent:["this is the title","this is the content of the modal"]
     };
     this.handleActionClick = this.handleActionClick.bind(this);
     this.handleClicked = this.handleClicked.bind(this);
     this.showFloorMenu = this.showFloorMenu.bind(this);
+    this.persistConfigData = this.persistConfigData.bind(this);
+    this.handleModalView = this.handleModalView.bind(this);
   }
 
   handleActionClick(e){
     let actionHandle = e.currentTarget.getAttribute('data-key-route');
     actionHandle !== null && actionHandle !== undefined ? this.handleClicked(actionHandle) : null;
+  }
+
+  handleModalContent(args){
+    Array.isArray(args) ? this.setState({modalContent:args}) : console.log('Object is not an array');
+  }
+
+  handleModalView(){
+    this.state.modalOpen === true ? this.setState({modalOpen:false}) : this.setState({modalOpen:true});
   }
 
   handleClicked(args) {
@@ -69,6 +74,12 @@ class App extends Component {
       case 'tasks':
         this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
         break;
+      case 'reminders':
+        this.setState({model:'reminders',activeSection:'Reminders',showMenu:false,floorVisible:'hidden',bottomNavItem:'reminders',actionMenu:'on-screen',actionSubMenu:'reminders'});
+        break;
+      case 'new-reminder':
+        this.setState({model:'remindersAdd',activeSection:'Add A Reminder',showMenu:false,floorVisible:'hidden',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'reminders'});
+        break;
       case 'new-task':
         this.setState({model:'tasksAdd',activeSection:'Add A Task',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
         break;
@@ -82,10 +93,14 @@ class App extends Component {
     this.state.floorVisible === 'hidden' ? this.setState({floorVisible:'visible'}) : this.setState({floorVisible:'hidden'});
   }
 
+  persistConfigData(obj){
+    console.log(obj);
+    this.setState({config:obj});
+  }
+
   render() {
     return (
       <div className="App">
-
         <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu} onClick={this.handleActionClick}/></section>
         <LeftNav showFloorMenu={this.showFloorMenu} floorVisible={this.state.floorVisible} handleClicked={this.handleClicked}/>
         <section id="main">
@@ -97,12 +112,13 @@ class App extends Component {
               } else if (error) {
                 return <div>Woh hey hey hey wait a second...</div>;
               } else {
+                {/*this.persistConfigData(result.body.config);*/}
                 return(
                   <div>
-                  <HeadBar section={this.state.activeSection} showMenu={this.state.showMenu}/>
-                  <div className="app-core-view">
-                    <PanelView default={true} type={this.state.mail} nodes={nodes} model={this.state.model} data={result.body}/>
-                  </div>
+                    <HeadBar section={this.state.activeSection} showMenu={this.state.showMenu}/>
+                    <div className="app-core-view">
+                      <PanelView modalClick={this.handleModalView} modalVisible={this.state.modalOpen} modalContent={this.state.modalContent} default={true} type={this.state.mail} nodes={nodes} model={this.state.model} data={result.body} config={result.body.config}/>
+                    </div>
                   </div>
                 )
               }

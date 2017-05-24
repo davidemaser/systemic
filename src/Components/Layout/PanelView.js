@@ -9,6 +9,9 @@ import MailView from "../Views/MailView";
 import TaskView from "../Views/TaskView";
 import MailCompose from "../Views/MailCompose";
 import AddTaskView from "../AddTaskView";
+import ReminderView from "../Views/ReminderView";
+import AddReminderView from "../AddReminderView";
+import ModalView from "../ModalView";
 
 class PanelView extends Component{
   constructor(props){
@@ -16,7 +19,8 @@ class PanelView extends Component{
     this.state={
       model:this.props.model || null,
       data:this.props.data || null,
-      type:this.props.type
+      type:this.props.type,
+      config:this.props.config
     };
   }
 
@@ -27,8 +31,10 @@ class PanelView extends Component{
       mailCompose:<div className="view app-mail"><MailCompose type={this.state.type} nodes={this.props.nodes} data={this.state.data}/></div> ,
       user:<div className="view app-user"><UserView nodes={this.props.nodes} data={this.state.data}/></div> ,
       calendar:<div className="view app-mail"><CalendarView nodes={this.props.nodes} data={this.state.data}/></div>,
-      tasks:<div className="view app-tasks"><TaskView type={this.state.type} nodes={this.props.nodes} data={this.state.data}/></div>,
-      tasksAdd:<div className="view app-add-tasks"><AddTaskView type={this.state.type} nodes={this.props.nodes} data={this.state.data}/></div>
+      reminders:<div className="view app-reminder"><ReminderView type={this.state.type} nodes={this.props.nodes} data={this.state.data} config={this.props.config} /></div>,
+      remindersAdd:<div className="view app-add-reminder"><AddReminderView type={this.state.type} nodes={this.props.nodes} data={this.state.data} config={this.props.config}/></div>,
+      tasks:<div className="view app-tasks"><TaskView type={this.state.type} nodes={this.props.nodes} data={this.state.data} config={this.props.config} /></div>,
+      tasksAdd:<div className="view app-add-tasks"><AddTaskView type={this.state.type} nodes={this.props.nodes} data={this.state.data} config={this.props.config}/></div>
     };
 
     return modelObj[this.state.model]
@@ -37,6 +43,7 @@ class PanelView extends Component{
   render(){
     return(
       <div>
+        <ModalView modalClick={this.props.modalClick} modalVisible={this.props.modalVisible} modalContent={this.props.modalContent}/>
         {this.buildView()}
       </div>
     )

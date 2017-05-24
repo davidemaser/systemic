@@ -51,6 +51,15 @@ const menuItems = {
     {
       label:'Re-assign Task'
     }
+  ],
+  reminders:[
+    {
+      label:'New Reminder',
+      attribute:'new-reminder'
+    },
+    {
+      label:'Delete Reminder'
+    }
   ]
 };
 class ActionButton extends Component{

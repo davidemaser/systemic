@@ -72,6 +72,14 @@ class AddReminderView extends Component{
             <TaskPriorityView config={this.props.config}/>
           );
           break;
+        default:
+          formArray.push(
+            <div key={f} className="reminder-add-view-row">
+              <TextField
+                hintText="Input"
+                floatingLabelText={formItems[f].label}
+              />
+            </div>);
       }
     }
 

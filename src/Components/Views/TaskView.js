@@ -51,7 +51,7 @@ class TaskView extends Component{
   }
 
   handleChildClick() {
-    this.state.showAddModal === false ? this.setState({showAddModal:true}) : null;
+    this.state.showAddModal === false ? this.setState({showAddModal:true}) : this.setState({showAddModal:false});
 }
   renderTableRows(){
     let list = this.props.data[this.props.nodes['root']][this.props.nodes['tasks']];
@@ -73,7 +73,7 @@ class TaskView extends Component{
   render(){
     return(
       <div>
-        <AppToolbar data={this.state.data} node="tasks"/>
+        {this.props.showToolbar === true ? <AppToolbar data={this.state.data} node="tasks"/> : null }
       <Table selectable={this.state.selectable}
              multiSelectable={this.state.multiSelectable}>
         <TableHeader displaySelectAll={this.state.showCheckboxes}

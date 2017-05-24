@@ -8,7 +8,7 @@ injectTapEventPlugin();
 
 ReactDOM.render(
     <MuiThemeProvider>
-  <App dataUrl="https://davidemaser.github.io/data/temp-systemic.json" />
+  <App dataUrl="https://davidemaser.github.io/data/temp-systemic.json" defaultView="mailOverview" />
     </MuiThemeProvider>,
   document.getElementById('root')
 );

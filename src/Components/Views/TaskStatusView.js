@@ -22,6 +22,9 @@ class TaskStatusView extends Component{
         <MenuItem key={i} value={i} primaryText={items[i]} />
       )
     }
+    itemArray.sort(function(a,b){
+      return a.props.primaryText>b.props.primaryText
+    });
     return itemArray;
   }
   render(){

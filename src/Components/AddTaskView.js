@@ -87,6 +87,8 @@ class AddTaskView extends Component{
             <TaskPriorityView config={this.props.config}/>
           );
           break;
+        default:
+          formArray.push(null)
       }
     }
 

@@ -9,7 +9,7 @@ class TaskPriorityView extends Component{
   constructor(props){
     super(props);
     this.state={
-      value:1
+      value:"2"
     }
   }
   handleChange = (event, index, value) => this.setState({value});
@@ -22,6 +22,9 @@ class TaskPriorityView extends Component{
         <MenuItem key={i} value={i} primaryText={items[i]} />
       )
     }
+    itemArray.sort(function(a,b){
+      return a.props.primaryText>b.props.primaryText
+    });
     return itemArray;
   }
   render(){

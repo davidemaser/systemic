@@ -8,9 +8,10 @@ class DatePickerView extends Component {
   constructor(props){
     super(props);
     this.state={
-      autoOk: true,
+      autoOk: true
     }
   }
+
   render() {
     return (
       <div>

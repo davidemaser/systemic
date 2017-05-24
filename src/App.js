@@ -24,7 +24,7 @@ class App extends Component {
       mail:'received',
       floorVisible:'hidden',
       activeSection:'Messages',
-      model:'mailOverview',
+      model:this.props.defaultView,
       showMenu:true,
       actionMenu:'on-screen',
       actionSubMenu:'mail',
@@ -114,7 +114,6 @@ class App extends Component {
               } else if (error) {
                 return <div>Woh hey hey hey wait a second...</div>;
               } else {
-                {/*this.persistConfigData(result.body.config);*/}
                 return(
                   <div>
                     <HeadBar section={this.state.activeSection} showMenu={this.state.showMenu}/>

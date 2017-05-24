@@ -11,9 +11,17 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import UserList from "../UserList";
 const toolScope={
-  mail:[
-
-  ],
+  mail:{
+    primary:true,
+    primaryList:["All Messages","Unread Messages","Read Messages","Divider","Archived Messages","Trash"],
+    primaryListDefault:"0",
+    secondary:true,
+    userFilter:true,
+    options:false,
+    optionsTitle:'Options',
+    optionsList:["Download Excel","Help"],
+    hintText:'Filter by user'
+  },
   tasks:{
     primary:true,
     primaryList:["All Tasks","Open Tasks","My Tasks","Completed Tasks","Refused Tasks","Divider","Following","Unassigned"],

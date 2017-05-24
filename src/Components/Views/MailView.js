@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import AppToolbar from "../Layout/Toolbar";
 
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
@@ -50,6 +51,8 @@ class MailView extends Component{
   }
   render(){
     return(
+      <div>
+        {this.props.showToolbar === true ? <AppToolbar data={this.state.data} node="mail"/> : null }
       <Table selectable={this.state.selectable}
              multiSelectable={this.state.multiSelectable}>
         <TableHeader displaySelectAll={this.state.showCheckboxes}
@@ -63,6 +66,7 @@ class MailView extends Component{
           {this.renderTableRows()}
         </TableBody>
       </Table>
+      </div>
     )
   }
 }

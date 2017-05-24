@@ -4,27 +4,6 @@
 import React,{Component} from 'react';
 import TextField from 'material-ui/TextField';
 
-const typeMap = {
-  address:{
-    home:{
-      schema:['street','city','state','zip','country']
-    },
-    work:{
-      schema:['street','city','state','zip','country']
-    }
-  },
-  phone:{
-    home:{
-      schema:['number']
-    },
-    work:{
-      schema:['number']
-    },
-    cell:{
-      schema:['number']
-    }
-  }
-};
 class UserView extends Component{
   constructor(props){
     super(props);
@@ -33,18 +12,12 @@ class UserView extends Component{
     }
   }
 
-  formatObject(data,type){
-    let processType = typeMap[type];
+  formatObject(data){
     let objArray = [];
     let n;
     for(n in data){
       objArray.push(<div>{n} {data[n]}</div>)
     }
-    /*return(
-      <div>
-        {objArray}
-      </div>
-    )*/
   }
   renderUserView() {
     let rootNode = this.props.nodes['root'];

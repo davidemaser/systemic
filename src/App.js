@@ -85,6 +85,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <section id="action" className={this.state.actionMenu}><ActionButton subMenu={this.state.actionSubMenu} onClick={this.handleActionClick}/></section>
         <LeftNav showFloorMenu={this.showFloorMenu} floorVisible={this.state.floorVisible} handleClicked={this.handleClicked}/>
         <section id="main">

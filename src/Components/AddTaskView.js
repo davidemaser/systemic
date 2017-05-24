@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react';
 import TextField from 'material-ui/TextField';
+import UserList from "./UserList";
 
 class AddTaskView extends Component{
   constructor(props){
@@ -56,7 +57,10 @@ class AddTaskView extends Component{
   render(){
     return(
         <div className="task-add-view">
+          <div className="task-add-form">
           {this.buildForm()}
+          </div>
+          <div className="task-add-users"><UserList/></div>
         </div>
     )
   }

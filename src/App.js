@@ -51,14 +51,15 @@ class App extends Component {
     Array.isArray(args) ? this.setState({modalContent:args}) : console.log('Object is not an array');
   }
 
-  handleModalView(){
+  handleModalView(args){
+    console.log(args);
     this.state.modalOpen === true ? this.setState({modalOpen:false}) : this.setState({modalOpen:true});
   }
 
   handleClicked(args) {
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail',hasModal:false});
+        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail',hasModal:false,modalContent:["Confirmation","Are you sure you want to delete this message?"]});
         break;
       case 'mail-compose':
         this.setState({mail:'received',model:'mailCompose',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',hasModal:true});
@@ -79,7 +80,7 @@ class App extends Component {
         this.setState({model:'reminders',activeSection:'Reminders',showMenu:false,floorVisible:'hidden',bottomNavItem:'reminders',actionMenu:'on-screen',actionSubMenu:'reminders',hasModal:false});
         break;
       case 'new-reminder':
-        this.setState({model:'remindersAdd',activeSection:'Add A Reminder',showMenu:false,floorVisible:'hidden',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'reminders',hasModal:true});
+        this.setState({model:'remindersAdd',activeSection:'Add A Reminder',showMenu:false,floorVisible:'hidden',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'reminders',hasModal:true,modalContent:["Reminder Created","The reminder has been successfully created"]});
         break;
       case 'new-task':
         this.setState({model:'tasksAdd',activeSection:'Add A Task',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks',hasModal:false});

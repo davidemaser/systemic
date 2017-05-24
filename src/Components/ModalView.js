@@ -39,10 +39,10 @@ class ModalView extends Component {
         onTouchTap={this.props.modalClick}
       />,
       <FlatButton
-        label="Submit"
+        label="Continue"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleClose}
+        onTouchTap={this.props.modalClick}
       />,
     ];
 

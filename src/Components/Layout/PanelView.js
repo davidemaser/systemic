@@ -43,7 +43,7 @@ class PanelView extends Component{
   render(){
     return(
       <div>
-        <ModalView modalClick={this.props.modalClick} modalVisible={this.props.modalVisible} modalContent={this.props.modalContent}/>
+        {this.props.hasModal === true ? <ModalView modalClick={this.props.modalClick} modalVisible={this.props.modalVisible} modalContent={this.props.modalContent}/> : null}
         {this.buildView()}
       </div>
     )

@@ -52,7 +52,7 @@ class ModalView extends Component {
         <Dialog
           title={this.state.modalContent[0]}
           actions={actions}
-          modal={false}
+          modal={true}
           open={this.props.modalVisible}
           onRequestClose={this.props.modalClick}
         >

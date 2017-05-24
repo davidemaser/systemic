@@ -31,6 +31,7 @@ class App extends Component {
       bottomNavItem:'default',
       snackBarMessage:'Default message',
       snackBarOpen:false,
+      hasModal:false,
       modalOpen:false,
       modalContent:["this is the title","this is the content of the modal"]
     };
@@ -57,34 +58,34 @@ class App extends Component {
   handleClicked(args) {
     switch(args){
       case 'mail-received':
-        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail'});
+        this.setState({mail:'received',model:'mailOverview',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',actionSubMenu:'mail',hasModal:false});
         break;
       case 'mail-compose':
-        this.setState({mail:'received',model:'mailCompose',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen'});
+        this.setState({mail:'received',model:'mailCompose',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'on-screen',hasModal:true});
         break;
       case 'mail-sent':
-        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen'});
+        this.setState({mail:'received',model:'mailMessage',activeSection:'Messages',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen',hasModal:false});
         break;
       case 'user-settings':
-        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen'});
+        this.setState({model:'user',activeSection:'User Settings',showMenu:true,floorVisible:'hidden',bottomNavItem:'default',actionMenu:'off-screen',hasModal:false});
         break;
       case 'app-settings':
-        this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible',bottomNavItem:'default'});
+        this.setState({activeSection:'App Settings',showMenu:false,floorVisible:'visible',bottomNavItem:'default',hasModal:false});
         break;
       case 'tasks':
-        this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
+        this.setState({model:'tasks',activeSection:'Tasks',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks',hasModal:false});
         break;
       case 'reminders':
-        this.setState({model:'reminders',activeSection:'Reminders',showMenu:false,floorVisible:'hidden',bottomNavItem:'reminders',actionMenu:'on-screen',actionSubMenu:'reminders'});
+        this.setState({model:'reminders',activeSection:'Reminders',showMenu:false,floorVisible:'hidden',bottomNavItem:'reminders',actionMenu:'on-screen',actionSubMenu:'reminders',hasModal:false});
         break;
       case 'new-reminder':
-        this.setState({model:'remindersAdd',activeSection:'Add A Reminder',showMenu:false,floorVisible:'hidden',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'reminders'});
+        this.setState({model:'remindersAdd',activeSection:'Add A Reminder',showMenu:false,floorVisible:'hidden',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'reminders',hasModal:true});
         break;
       case 'new-task':
-        this.setState({model:'tasksAdd',activeSection:'Add A Task',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks'});
+        this.setState({model:'tasksAdd',activeSection:'Add A Task',showMenu:false,floorVisible:'visible',bottomNavItem:'tasks',actionMenu:'on-screen',actionSubMenu:'tasks',hasModal:false});
         break;
       default:
-        this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen',bottomNavItem:'default'});
+        this.setState({mail:'received',model:'mail',activeSection:'Messages',actionMenu:'on-screen',bottomNavItem:'default',hasModal:false});
         break;
     }
   }
@@ -117,7 +118,7 @@ class App extends Component {
                   <div>
                     <HeadBar section={this.state.activeSection} showMenu={this.state.showMenu}/>
                     <div className="app-core-view">
-                      <PanelView modalClick={this.handleModalView} modalVisible={this.state.modalOpen} modalContent={this.state.modalContent} default={true} type={this.state.mail} nodes={nodes} model={this.state.model} data={result.body} config={result.body.config}/>
+                      <PanelView hasModal={this.state.hasModal} modalClick={this.handleModalView} modalVisible={this.state.modalOpen} modalContent={this.state.modalContent} default={true} type={this.state.mail} nodes={nodes} model={this.state.model} data={result.body} config={result.body.config}/>
                     </div>
                   </div>
                 )

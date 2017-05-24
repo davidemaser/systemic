@@ -99,7 +99,8 @@ class AddTaskView extends Component{
           <div className="task-add-form">
           {this.buildForm()}
           </div>
-          <div className="task-add-users"><UserList title="Assign To" config={this.props.config}/></div>
+          <div className="task-add-users"><UserList type='table' title="Assign To" config={this.props.config}/></div>
+          {/*UserList can be table or dropdown*/}
         </div>
     )
   }

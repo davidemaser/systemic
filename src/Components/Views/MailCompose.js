@@ -5,10 +5,11 @@ import React,{Component} from 'react';
 import {List} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
+import UserList from "../UserList";
 
 const mailRows = [
   {
-    type:'text',
+    type:'userlist',
     label:'TO',
     default:'Something'
   },
@@ -49,6 +50,8 @@ class MailCompose extends Component{
             floatingLabelText={mailRows[m].label}
           />
         </div>)
+      }else if(mailRows[m].type === 'userlist'){
+        mailArray.push(<UserList type='dropdown' title="TO"/>);
       }else if(mailRows[m].type === 'textarea'){
         mailArray.push(<div key={m} className="mail-compose-row message">
           <TextField

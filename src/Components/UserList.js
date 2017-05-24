@@ -4,12 +4,14 @@
 import React,{Component} from 'react';
 import Request from 'react-http-request';
 import UserListTable from "./UserListTable";
+import UserListDropDown from "./UserListDropDown";
 
 class UserList extends Component{
   constructor(props){
     super(props);
     this.state={
-      src:'https://davidemaser.github.io/data/temp-users.json'
+      src:'https://davidemaser.github.io/data/temp-users.json',
+      type:this.props.type
     }
   }
 
@@ -24,8 +26,11 @@ class UserList extends Component{
               return <div>Woh hey hey hey wait a second...</div>;
             } else {
               return(
-                <UserListTable data={result.body.user} config={this.props.config} title={this.props.title} />
-              )
+                this.state.type === 'table' ?
+                  <UserListTable data={result.body.user} config={this.props.config} title={this.props.title} />
+                  :
+                  <UserListDropDown data={result.body.user} title={this.props.title} hint={this.props.hint}/>
+            )
             }
           }
         }

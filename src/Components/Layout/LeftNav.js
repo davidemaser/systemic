@@ -18,7 +18,7 @@ class LeftNav extends Component{
     return(
       <section id="nav">
         <List>
-          <ListItem primaryText="Inbox" onClick={()=>{this.props.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
+          <ListItem primaryText="Messages" onClick={()=>{this.props.handleClicked('mail-received')}} leftIcon={<ContentDrafts />} />
           <ListItem primaryText="User Settings" onClick={()=>{this.props.handleClicked('user-settings')}} leftIcon={<UserIcon />} />
           <ListItem primaryText="Notes" leftIcon={<ContentTasks />} />
           <ListItem primaryText="Tasks" onClick={()=>{this.props.handleClicked('tasks')}} leftIcon={<Calendar />} />
@@ -26,7 +26,7 @@ class LeftNav extends Component{
         </List>
         <Divider />
         <List>
-          <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
+          <ListItem primaryText="Notifications" rightIcon={<ActionInfo />} />
           <ListItem primaryText="Bookmarks" rightIcon={<ContentBookmarks />} />
           <ListItem primaryText="Settings" onClick={()=>{this.props.handleClicked('app-settings')}} rightIcon={<ContentSettings />} />
 
